@@ -1,0 +1,1 @@
+console.log(Math.max(8,8,9,5,3,4,6,7,1));

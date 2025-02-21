@@ -21,3 +21,4 @@ const more = anotherArray.find(x => x>100)
 console.log(more);
 
 //find hossa filter ar khalatw vai,find filter kore shudu protom element ta diba na hole undefined return korbe.
+

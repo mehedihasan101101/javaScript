@@ -46,3 +46,14 @@
  "Asynchronous programming allows code to execute without blocking the next task."
 
  "A JavaScript Promise is an object that represents the eventual completion (fulfilled) or failure (rejected) of an asynchronous operation."
+
+ Call stack is the data Structure that javaScript use to track all function calls. it use last in first out method. 
+
+ JavaScript accomplishes its execution using a single-threaded, synchronous model. It handles asynchronous functions through the event loop.
+ JavaScript sends tasks to the call stack for execution. The call stack processes tasks in order and delegates async tasks (like Promises, setTimeout, and fetch) to Web APIs.
+ Once an async function is completed (resolved or rejected), the event loop moves it back to the call stack for execution—but only when the call stack is empty.
+
+ The .then() method is used with Promises in JavaScript. It allows us to handle the result of a Promise once it resolves successfully. 
+ It takes a callback function that runs when the Promise is fulfilled."
+ Both .then() and async/await are used for handling asynchronous operations in JavaScript, but they have key 
+ differences in syntax, readability, and error handling.

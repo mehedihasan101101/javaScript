@@ -13,6 +13,7 @@ function usersPost(post){
         <h3>User Id:${posts.userId}</h3>
         <p>Title:${posts.title}</p>
         <p>Description:${posts.body}</p>
+        
         `;
         postContainer.appendChild(eachPostDiv); 
         //styles for each post Div

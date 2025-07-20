@@ -1,7 +1,9 @@
-import { NavLink } from "react-router";
-const Navbar = () => {
+import { Link } from "react-router";
+
+
+const Nav = () => {
     return (
-        <div className="navbar w- bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -10,17 +12,18 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li> <NavLink to={"/"}>Home</NavLink> </li>
-                        <li><NavLink>SignUp</NavLink> </li>
+                        <li><Link to={""}>Home</Link></li>
+                        <li><Link to={"register"}>Sign Up</Link></li>
+                        <li><Link to={"login"}>Login</Link></li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">daisyUI</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li> <NavLink to={"/"}>Home</NavLink> </li>
-                    <li><NavLink to={"/signup"}>SignUp</NavLink> </li>
-                    <li><NavLink to={"/login"}>Login</NavLink> </li>
+                    <li><Link to={""}>Home</Link></li>
+                    <li><Link to={"register"}>Sign Up</Link></li>
+                    <li><Link to={"login"}>Login</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
@@ -30,4 +33,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Nav;

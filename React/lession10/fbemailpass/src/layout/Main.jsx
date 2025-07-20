@@ -6,7 +6,10 @@ const Main = () => {
     return (
         <>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div className='w-[90%] m-auto'>
+                <Outlet></Outlet>
+            </div>
+
 
         </>
 

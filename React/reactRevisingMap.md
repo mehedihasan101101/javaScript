@@ -22,7 +22,7 @@ React Router:-
 11. Setting default children for parent using "index"
 12. navigation for spinner and others 
 13. error page handling
-14. for handling with js,with useState,useRef,customHook,re-useable form
+14. form handling with js,with useState,useRef,customHook,re-useable form
 15. context api,property drilling
  
 

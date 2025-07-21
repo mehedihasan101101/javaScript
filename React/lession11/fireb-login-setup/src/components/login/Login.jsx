@@ -1,25 +1,48 @@
+import { useContext, useState } from "react";
+import { Link, Outlet } from "react-router";
+import { AutContext } from "../../context/authContext";
 
 
 const Login = () => {
+    const { handleLogin, sendVerification } = useContext(AutContext);
+    const [reSendVerification, setReSendVerfication] = useState(false)
+    const [loginError, setLoginError] = useState("")
+    const [success, setSuccess] = useState(false);
+
+    function handleLoginUser(e) {
+        e.preventDefault()
+        setReSendVerfication(false);
+        setLoginError("");
+        setSuccess(false);
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        handleLogin(email, password)
+            .then(result => {
+                console.log(result)
+                if (!result.user.emailVerified) {
+                    setReSendVerfication(true);
+                    setLoginError("Please verify your Email to Login!")
+                }
+                else {
+                    setSuccess(true);
+                    console.log(result.user);
+                }
+
+
+            })
+            .catch(error => {
+                setLoginError(error.message)
+            })
+
+    }
+
     return (
         <div className="flex items-center w-full justify-center ">
 
             <div className="card bg-base-100 w-full max-w-sm  shadow-2xl mt-20">
                 <h1 className="text-center text-3xl font-bold mt-5">Login</h1>
-                <div className="card-body">
-                    <form className="fieldset">
-                        <label className="label">Email</label>
-                        <input type="email" name="email" className="input" placeholder="Email" />
-                        <label className="label">Password</label>
-                        <input type="password" name="password" className="input" placeholder="Password" />
-
-                        <label className="label mt-1">
-                            <input type="checkbox" name="checkbox" className="checkbox" />
-                            accept terms & and conditions
-                        </label>
-                        <button type="submit" className="btn btn-neutral mt-4">Login</button>
-                    </form>
-                </div>
+                <Outlet context={{ reSendVerification, loginError, success, handleLoginUser, sendVerification }}></Outlet>
             </div>
 
         </div>

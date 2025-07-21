@@ -7,6 +7,8 @@ import Home from './components/home/Home.jsx';
 import Signup from './components/signup/Signup.jsx';
 import Login from './components/login/Login.jsx';
 import { AuthContext } from './context/authContext.jsx';
+import LoginFormm from './components/login/LoginFormm.jsx';
+import ForgetPass from './components/login/ForgetPass.jsx';
 
 
 const router = createBrowserRouter([
@@ -24,7 +26,17 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <Login></Login>
+        element: <Login></Login>,
+        children: [
+          {
+            path: "",
+            element: <LoginFormm></LoginFormm>
+          },
+          {
+            path: "recovery",
+            element: <ForgetPass></ForgetPass>
+          }
+        ]
       }
     ]
   }

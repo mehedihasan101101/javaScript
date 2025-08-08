@@ -1,11 +1,13 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.init";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { sendEmailVerification, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { sendEmailVerification, updateProfile, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
 const AutContext = createContext(null);
 
 
 const AuthContext = ({ children }) => {
+    const [user, setUser] = useState(null);
+
     //create account
     function passwordSignup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -24,11 +26,42 @@ const AuthContext = ({ children }) => {
     function handleLogin(email, password) {
         return signInWithEmailAndPassword(auth, email, password)
     }
+    //observer
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+
+            if (currentUser) {
+                setUser(currentUser);
+            }
+            else {
+                console.log("user is Signed out")
+            }
+
+        })
+        return () => {
+            unsubscribe();
+        }
+    }, [])
+    //password Recovery
+
+    function handleResetPass(email) {
+        return sendPasswordResetEmail(auth, email);
+    }
+    //logout 
+    function handleLogOut() {
+        return signOut(auth)
+            .then(() => {
+                setUser(null);
+            })
+    }
     const value = {
         passwordSignup,
         sendVerification,
         addUserInfo,
-        handleLogin
+        handleLogin,
+        user,
+        handleLogOut,
+        handleResetPass
     };
     return (
         <>

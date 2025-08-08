@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import { Link } from "react-router";
+import { AutContext } from "../../context/authContext";
 
 
 const Nav = () => {
+    const { user, handleLogOut } = useContext(AutContext);
+
+
+
+    console.log(user);
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm px-8">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -26,9 +33,41 @@ const Nav = () => {
                     <li><Link to={"login"}>Login</Link></li>
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
-            </div>
+
+
+            {user ?
+
+                <div className="dropdown dropdown-end navbar-end ">
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            <img
+                                alt="Tailwind CSS Navbar component"
+                                src={user.photoURL} />
+                        </div>
+                    </div>
+                    <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-43 w-52 p-2  shadow">
+                        <li>
+                            <Link to={"profile"} className="justify-between">
+                                Profile
+                                <span className="badge">New</span>
+                            </Link>
+                        </li>
+                        <li><Link onClick={handleLogOut}>Logout</Link></li>
+                    </ul>
+                </div>
+
+
+                :
+
+
+                <div className="navbar-end">
+                    <Link to={"login"} className="btn">Login</Link>
+                </div>
+            }
+            {/* profile */}
+
         </div>
     );
 };

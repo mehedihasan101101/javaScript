@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, Outlet } from "react-router";
+import { Outlet,  } from "react-router";
 import { AutContext } from "../../context/authContext";
 
 
@@ -17,16 +17,20 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
+
         handleLogin(email, password)
             .then(result => {
                 console.log(result)
                 if (!result.user.emailVerified) {
                     setReSendVerfication(true);
-                    setLoginError("Please verify your Email to Login!")
+                    setLoginError("Please verify your Email to Login!");
+
                 }
                 else {
                     setSuccess(true);
-                    console.log(result.user);
+                    e.target.reset();
+
+
                 }
 
 

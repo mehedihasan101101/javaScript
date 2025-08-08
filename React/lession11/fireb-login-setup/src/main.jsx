@@ -9,6 +9,8 @@ import Login from './components/login/Login.jsx';
 import { AuthContext } from './context/authContext.jsx';
 import LoginFormm from './components/login/LoginFormm.jsx';
 import ForgetPass from './components/login/ForgetPass.jsx';
+import Profile from './components/profile/Profile.jsx';
+import PrivateRoute from './private-routes/PrivateRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
             element: <ForgetPass></ForgetPass>
           }
         ]
+      },
+      {
+        path: "profile",
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>
       }
     ]
   }
